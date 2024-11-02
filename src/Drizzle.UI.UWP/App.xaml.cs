@@ -20,6 +20,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Core;
 using Windows.Globalization;
 using Windows.UI.Xaml;
@@ -47,6 +48,7 @@ namespace Drizzle.UI.UWP
         }
         private readonly ILogger logger;
         private readonly IServiceProvider _serviceProvider;
+        private AppServiceConnection _appServiceConnection;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -218,6 +220,9 @@ namespace Drizzle.UI.UWP
                 Window.Current.Activate();
             }
             //SetAppRequestedTheme();
+
+            // Establish AppServiceConnection with WidgetProvider
+            EstablishAppServiceConnection();
         }
 
         /// <summary>
@@ -274,5 +279,34 @@ namespace Drizzle.UI.UWP
         }
 
         private void LogUnhandledException<T>(T exception) => logger.LogError(exception?.ToString());
+
+        private async void EstablishAppServiceConnection()
+        {
+            _appServiceConnection = new AppServiceConnection
+            {
+                AppServiceName = "com.rocksdanister.weather.WidgetProvider",
+                PackageFamilyName = Package.Current.Id.FamilyName
+            };
+
+            var status = await _appServiceConnection.OpenAsync();
+            if (status != AppServiceConnectionStatus.Success)
+            {
+                logger.LogError($"Failed to establish AppServiceConnection: {status}");
+                return;
+            }
+
+            _appServiceConnection.RequestReceived += OnRequestReceived;
+            _appServiceConnection.ServiceClosed += OnServiceClosed;
+        }
+
+        private void OnRequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        {
+            // Handle requests from the WidgetProvider
+        }
+
+        private void OnServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
+        {
+            // Handle service closed event
+        }
     }
 }

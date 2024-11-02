@@ -41,6 +41,11 @@
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" uap5:Optional="true" xmlns:a="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" BackgroundColor="transparent"/>
       </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.appService">
+          <uap:AppService Name="com.rocksdanister.weather.WidgetProvider" />
+        </uap:Extension>
+      </Extensions>
     </Application>
   </Applications>
 

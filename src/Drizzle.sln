@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
@@ -20,6 +19,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drizzle.UI.Avalonia", "Drizzle.UI.Avalonia\Drizzle.UI.Avalonia.csproj", "{08C53C33-EC81-47A1-9F69-7B9BBF708C13}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drizzle.UI.Avalonia.Desktop", "Drizzle.UI.Avalonia.Desktop\Drizzle.UI.Avalonia.Desktop.csproj", "{7368AAE3-A5AA-4AB3-8BBE-DDCF380D4593}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Drizzle.WidgetProvider", "Drizzle.WidgetProvider\Drizzle.WidgetProvider.csproj", "{12345678-1234-1234-1234-123456789012}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
